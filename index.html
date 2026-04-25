@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <body>
+      <p>page1</p>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cadeau</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(180deg,#ffc0da,#ff8fb1);
+  color:#fff;
+  text-align:center;
+  overflow:hidden
+}
+
+.screen{
+  display:none;
+  min-height:100vh;
+  padding:20px;
+  box-sizing:border-box;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column
+}
+
+.active{display:flex}
+
+.btn{
+  background:#c2185b;
+  border:none;
+  color:#fff;
+  padding:14px 20px;
+  border-radius:999px;
+  font-size:16px;
+  margin:10px;
+  max-width:90%;
+  box-shadow:0 8px 20px rgba(0,0,0,.2)
+}
+
+img{
+  max-width:88vw;
+  max-height:55vh;
+  border-radius:22px;
+  box-shadow:0 10px 30px rgba(0,0,0,.25)
+}
+
+.msg{
+  font-size:22px;
+  font-weight:bold;
+  margin-bottom:20px
+}
+
+.small{font-size:18px}
+
+/* ✨ ايقونة الهروب */
+#runText{
+  position:relative;
+  cursor:pointer;
+  font-size:22px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- شاشة 1 -->
+<div id='s1' class='screen active'>
+  <div class='msg'>
+    Pardonnez-moi, mais aujourd'hui me semble étrangement spécial ; 
+    je crois que c'est la magie de vos yeux, oh là là ! 🌹
+  </div>
+  <button class='btn' onclick='next(2)'>Cliquez ici, Mademoiselle</button>
+</div>
+
+<!-- شاشة 2 -->
+<div id='s2' class='screen'>
+  <img src='img1.jpg'>
+  <button class='btn' onclick='next(3)'>Oh mon Dieu, que tu es belle !</button>
+</div>
+
+<!-- شاشة 3 -->
+<div id='s3' class='screen'>
+  <img src='img2.jpg'>
+  <button class='btn' onclick='next(4)'>
+    Je vous prie de m'excuser le plus sincèrement...
+  </button>
+</div>
+
+<!-- شاشة 4 -->
+<div id='s4' class='screen'>
+  
+  <!-- 😹 هذا هو اللي يهرب -->
+  <div id='runText'>ميعاو لتسقو 😹</div>
+
+  <img src='img3.jpg'>
+
+  <audio id='song' controls autoplay src='music.mp3'></audio>
+
+</div>
+
+<script>
+
+function next(n){
+  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+
+  if(n===4){
+    document.getElementById('song').play().catch(()=>{});
+  }
+}
+
+/* ✨ حركة الهروب */
+let tries = 0;
+const t = document.getElementById('runText');
+
+t.addEventListener('click', () => {
+  tries++;
+
+  if(tries < 5){
+    t.style.position = 'absolute';
+    t.style.left = Math.random()*70 + 'vw';
+    t.style.top = Math.random()*70 + 'vh';
+  } else {
+    t.innerText = "مسكتني 😹❤️";
+  }
+});
+
+</script>
+
+</body>
+</html>
